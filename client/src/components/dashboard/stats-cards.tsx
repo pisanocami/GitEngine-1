@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GitCommit, Brain, Clock, BookOpen } from "lucide-react";
-import { CardSkeleton } from "@/components/ui/skeleton-components";
+import { CardSkeleton } from "~/components/ui/skeleton-components";
 import type { DailyStats } from "@shared/schema";
 
 interface StatsCardsProps {

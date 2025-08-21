@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useMemo } from "react";
-import { TableSkeleton } from "@/components/ui/skeleton-components";
+import { TableSkeleton } from "@/components/ui/skeletons/table-skeleton"; // Fix skeleton import path
 import type { Commit } from "@shared/schema";
 
 interface CommitsTableProps {
@@ -26,8 +26,8 @@ export function CommitsTable({ data = [] }: CommitsTableProps) {
   }, [data, searchTerm, filterType]);
 
   const branches = useMemo(() => {
-    const uniqueBranches = [...new Set(data.map(commit => commit.branch))];
-    return uniqueBranches;
+    const branchSet = new Set(data.map(commit => commit.branch));
+    return Array.from(branchSet);
   }, [data]);
 
   if (!data || data.length === 0) {

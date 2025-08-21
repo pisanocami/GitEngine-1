@@ -19,6 +19,7 @@ export const commits = pgTable("commits", {
   hash: text("hash").notNull(),
   message: text("message").notNull(),
   project: text("project").notNull(),
+  branch: text("branch").notNull(),
   impact: text("impact").notNull(),
   valueScore: integer("value_score").notNull(),
   userId: varchar("user_id").references(() => users.id),

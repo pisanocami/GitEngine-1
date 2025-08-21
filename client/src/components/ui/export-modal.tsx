@@ -6,7 +6,7 @@ import { Button } from './button';
 import { Checkbox } from './checkbox';
 import { Label } from './label';
 import { RadioGroup, RadioGroupItem } from './radio-group';
-import { Calendar } from './calendar';
+import { Calendar } from "../calendar"; 
 import { Progress } from './progress';
 import { useToast } from '@/hooks/use-toast';
 
@@ -54,6 +54,12 @@ const dataTypes: ExportOption[] = [
     label: 'Documentation',
     description: 'All documentation entries',
     icon: FileText
+  },
+  {
+    id: 'dates',
+    label: 'Dates',
+    description: 'All dates',
+    icon: LucideCalendar
   }
 ];
 
@@ -64,6 +70,7 @@ export function ExportModal({ trigger, data, filename = 'dashboard-export' }: Ex
   const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date }>({});
   const [isExporting, setIsExporting] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [exportData, setExportData] = useState<Record<string, unknown>>({});
   const { toast } = useToast();
 
   const handleTypeToggle = (typeId: string) => {
@@ -100,12 +107,12 @@ export function ExportModal({ trigger, data, filename = 'dashboard-export' }: Ex
 
     try {
       // Filter data based on selections
-      const exportData = selectedTypes.reduce((acc, type) => {
+      const exportData: Record<string, unknown> = selectedTypes.reduce((acc: Record<string, unknown>, type) => {
         if (data[type]) {
           acc[type] = data[type];
         }
         return acc;
-      }, {} as any);
+      }, {});
 
       // Apply date filtering if specified
       if (dateRange.from || dateRange.to) {
@@ -180,7 +187,7 @@ export function ExportModal({ trigger, data, filename = 'dashboard-export' }: Ex
     clearInterval(progressInterval);
   };
 
-  const convertToCSV = (data: any): string => {
+  const convertToCSV = (data: Record<string, any>): string => {
     // Simple CSV conversion - you'd want to make this more robust
     const items = Object.values(data).flat() as any[];
     if (items.length === 0) return '';
