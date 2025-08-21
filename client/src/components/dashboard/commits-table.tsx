@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useMemo } from "react";
-import { TableSkeleton } from "@/components/ui/skeletons/table-skeleton"; // Fix skeleton import path
+import { TableSkeleton } from "@/components/ui/skeleton-components";
 import type { Commit } from "@shared/schema";
 
 interface CommitsTableProps {

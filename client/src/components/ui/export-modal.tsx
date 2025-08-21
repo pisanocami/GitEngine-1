@@ -6,7 +6,7 @@ import { Button } from './button';
 import { Checkbox } from './checkbox';
 import { Label } from './label';
 import { RadioGroup, RadioGroupItem } from './radio-group';
-import { Calendar } from "../calendar"; 
+import { Calendar } from '../calendar'; 
 import { Progress } from './progress';
 import { useToast } from '@/hooks/use-toast';
 
@@ -286,7 +286,7 @@ export function ExportModal({ trigger, data, filename = 'dashboard-export' }: Ex
                 <Calendar
                   mode="single"
                   selected={dateRange.from}
-                  onSelect={(date) => setDateRange(prev => ({ ...prev, from: date }))}
+                  onSelect={(date: Date | undefined) => setDateRange(prev => ({ ...prev, from: date }))}
                   className="rounded-md border"
                 />
               </div>
@@ -295,7 +295,7 @@ export function ExportModal({ trigger, data, filename = 'dashboard-export' }: Ex
                 <Calendar
                   mode="single"
                   selected={dateRange.to}
-                  onSelect={(date) => setDateRange(prev => ({ ...prev, to: date }))}
+                  onSelect={(date: Date | undefined) => setDateRange(prev => ({ ...prev, to: date }))}
                   className="rounded-md border"
                 />
               </div>
