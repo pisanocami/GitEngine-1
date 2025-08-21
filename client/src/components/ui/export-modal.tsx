@@ -1,13 +1,12 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Download, FileText, Image, Database, Calendar, CheckCircle2 } from 'lucide-react';
+import { Download, FileText, Image, Database, Calendar as LucideCalendar, CheckCircle2 } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './dialog';
 import { Button } from './button';
 import { Checkbox } from './checkbox';
 import { Label } from './label';
 import { RadioGroup, RadioGroupItem } from './radio-group';
-import { DatePicker } from './calendar';
+import { Calendar } from './calendar';
 import { Progress } from './progress';
 import { useToast } from '@/hooks/use-toast';
 
@@ -36,7 +35,7 @@ const dataTypes: ExportOption[] = [
     id: 'stats',
     label: 'Statistics',
     description: 'Daily coding stats and metrics',
-    icon: Calendar
+    icon: LucideCalendar
   },
   {
     id: 'commits',
@@ -277,16 +276,20 @@ export function ExportModal({ trigger, data, filename = 'dashboard-export' }: Ex
             <div className="flex items-center space-x-4">
               <div>
                 <Label className="text-sm text-muted-foreground">From</Label>
-                <DatePicker
-                  date={dateRange.from}
+                <Calendar
+                  mode="single"
+                  selected={dateRange.from}
                   onSelect={(date) => setDateRange(prev => ({ ...prev, from: date }))}
+                  className="rounded-md border"
                 />
               </div>
               <div>
                 <Label className="text-sm text-muted-foreground">To</Label>
-                <DatePicker
-                  date={dateRange.to}
+                <Calendar
+                  mode="single"
+                  selected={dateRange.to}
                   onSelect={(date) => setDateRange(prev => ({ ...prev, to: date }))}
+                  className="rounded-md border"
                 />
               </div>
             </div>

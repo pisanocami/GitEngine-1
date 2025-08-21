@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GitCommit, Brain, Clock, BookOpen } from "lucide-react";
-import { StatsCardSkeleton } from "@/components/ui/skeleton-components";
+import { CardSkeleton } from "@/components/ui/skeleton-components";
 import type { DailyStats } from "@shared/schema";
 
 interface StatsCardsProps {
@@ -12,7 +12,7 @@ export function StatsCards({ data }: StatsCardsProps) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         {Array.from({ length: 4 }).map((_, i) => (
-          <StatsCardSkeleton key={i} />
+          <CardSkeleton key={i} />
         ))}
       </div>
     );

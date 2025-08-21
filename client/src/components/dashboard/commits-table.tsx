@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState, useMemo } from "react";
-import { CommitsTableSkeleton } from "@/components/ui/skeleton-components";
+import { TableSkeleton } from "@/components/ui/skeleton-components";
 import type { Commit } from "@shared/schema";
 
 interface CommitsTableProps {
@@ -31,7 +31,7 @@ export function CommitsTable({ data = [] }: CommitsTableProps) {
   }, [data]);
 
   if (!data || data.length === 0) {
-    return <CommitsTableSkeleton />;
+    return <TableSkeleton rows={5} />;
   }
 
   const getImpactColor = (impact: string) => {
